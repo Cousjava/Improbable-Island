@@ -133,7 +133,6 @@ function counciloffices_run(){
 			//output("maxncity with single is %s",$maxn['city']);
 			break;
 	}
-	modulehook("counciloffices");
 	page_footer();
 }
 
@@ -195,14 +194,14 @@ function counciloffices_worldmonsters(){
 	$result=mysql_query($sql);
 	$rows=mysql_num_rows($result);
 	$arr[] = array();
-	for($i=0;i<$rows;$i++)
+	for($i=0;$i<$rows;$i++)
 	{
 		$arr[$i]=array(
 			"cid"=>mysql_result($result,$i,'objid'),
 			"monsters"=>mysql_result($result,$i,'value'));	
 	}
 	$breachpoint= get_module_objpref("city",$arr[$i]["cid"],"breachpoint","onslaught");
-	for($i=0;i<$rows;$i++)
+	for($i=0;$i<$rows;$i++)
 	{
 		$cname=counciloffices_getcityname($arr[$i]["cid"]);
 		$arr[$i]["cname"]=$cname;
