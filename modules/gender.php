@@ -9,12 +9,12 @@ function gender_getmoduleinfo(){
 		"download"=>"https://github.com/Cousjava/Improbable-Island",
 		"prefs"=>array(
 			"Gender Prefs,title",
-			"user_Gender"=>"The gender noun i.e. male,text|androgynous",
+			"user_Gender"=>"The gender noun i.e. male,text|person",
 			"user_Subjective"=>"The subjective pronoun i.e. he or she,text|they",
 			"user_Objective"=>"The objective pronoun i.e. him or her,text|them",
 			"user_Reflexive"=>"The reflexive pronoun i.e. himself,text|themself",
-			"user_Possessive Pronoun"=>"The posessive pronoun i.e. his hers or theirs,text|theirs",
-			"user_Posessive Determiner"=>"The possessive dererminer i.e. his her or their,text|their",
+			"user_Possessive_Pronoun"=>"The posessive pronoun i.e. his or hers,text|theirs",
+			"user_Posessive_Determiner"=>"The possessive dererminer i.e. his or her,text|their",
 		)
 	);
 	return $info;
