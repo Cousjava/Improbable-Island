@@ -206,8 +206,13 @@ if (getsetting("allowcreation",1)==0){
 						db_query($sql_output);
 						//end
 						//creating userprefs
-						require_once("lib/userprefs.php");
-						createchar_userprefsid($args['acctid']);
+						//TODO: deal with userpefs stuff
+
+
+
+						$session['user']['stamina_amount']=100000;
+						$session['user']['stamina_amber']=40000;
+						$session['user']['stamina_red']=20000;
 
 						modulehook("process-create", $args);
 						if ($emailverification!=""){

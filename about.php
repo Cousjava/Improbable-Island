@@ -9,6 +9,8 @@ require_once("lib/http.php");
 
 tlschema("about");
 
+$r=httpget('r');
+
 page_header("About Legend of the Green Dragon");
 $details = gametimedetails();
 
@@ -26,7 +28,7 @@ switch ($op) {
 if ($session['user']['loggedin']) {
 	addnav("Return to the news","news.php");
 }else{
-	addnav("Login Page","index.php");
+	addnav("Login Page","index.php?r=".$r);
 }
 page_footer();
 ?>

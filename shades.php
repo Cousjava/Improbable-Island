@@ -20,7 +20,8 @@ output("Their souls whisper their torments, haunting your mind with their despai
 
 output("`nA sepulchral voice intones, \"`QIt is now %s in the world above.`\$\"`n`n",getgametime());
 modulehook("shades", array());
-commentdisplay("`n`QNearby, some lost souls lament:`n", "shade","Despair",25,"despairs");
+//commentdisplay("`n`QNearby, some lost souls lament:`n", "shade","Despair",25,"despairs");
+dualcommentary("shade","Chat with other Failed contestants",25,"mutters");
 
 addnav("Log out","login.php?op=logout");
 addnav("Places");

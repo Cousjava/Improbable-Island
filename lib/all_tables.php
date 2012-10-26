@@ -310,6 +310,9 @@ return array(
 		'homecity'=>array(
 			'name'=>'homecity', 'type'=>'varchar(25)', 'default'=>'Degolburg'
 			),
+		'chatloc'=>array(
+			'name'=>'chatloc', 'type'=>'varchar(255)'
+			),
 		'clanjoindate'=>array(
 			'name'=>'clanjoindate',
 			'type'=>'datetime',

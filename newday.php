@@ -220,7 +220,7 @@ if ($dp < $dkills) {
 	}*/
 
 	require_once("lib/stamina/stamina.php");
-	output("`nGetting ready for stamina processing");
+	output("`nGetting ready for stamina processing`n");
 	stamina_process_newday();
 	output($session['user']['stamina_amount']);
 
