@@ -36,7 +36,7 @@ function get_default_action_list() {
 		set_module_setting("actionsarray", serialize($actions), "staminasystem");
 		}else{
 		$sarray=serialize($actions);
-		$sql="INSERT INTO ".db_prefix("staminaactionsarray")." VALUES ($sarray)";
+		$sql="INSERT INTO ".db_prefix("staminaactionsarray")." VALUES ('$sarray')";
 		db_query($sql);
 		}
 	}
@@ -110,7 +110,7 @@ function get_player_action($action, $userid=false) {
 			if ($ismodule==true){
 			set_module_pref("actions", serialize($playeractions), "staminasystem", $userid);
 			} else {
-				set_userpref("stamina_actions", serialize($playeractions),$userid);
+				$session['user']['stamina_actions']=serialize($playeractions);
 			}
 			return($playeractions[$action]);
 		} else {
@@ -130,13 +130,14 @@ Used in modules' Install fields, this sets the default values for this Action.
 
 function install_action($actionname, $action){
 	global $session;
+	output("`nInstalling %s",$actionname);
 	$defaultactions = get_default_action_list();
 	$defaultactions[$actionname] = $action;
 	if ($ismodule==true){
 		set_module_setting("actionsarray",serialize($defaultactions),"staminasystem");
 	} else {
 		$sarray=serialize($defaultactions);
-		$sql="INSERT INTO ".db_prefix("staminaactionsarray")." VALUES ($sarray)";
+		$sql="UPDATE ".db_prefix("staminaactionsarray")." SET actions='$sarray'";
 		db_query($sql);}
 	return true;
 }
@@ -768,7 +769,7 @@ function stamina_level_up($action, $userid = false) {
 			if ($ismodule==true){
 			set_module_pref("actions", serialize($actions), "staminasystem", $userid);
 			} else {
-				set_userpref("staminasystem_actions", serialize($actions), $userid);
+				$session['user']['stamina_actions']=serialize($actions);
 			}
 			//set "levelledup" to true, so that the module can output levelling up text
 			$returninfo['levelledup'] = true;
