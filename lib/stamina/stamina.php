@@ -21,6 +21,7 @@ Returns arrays for every Action default.
 =======================================================
 */
 function get_default_action_list() {
+	debug("getting default action list");
 	if ($ismodule==true){
 		$actions = unserialize(get_module_setting("actionsarray", "staminasystem"));
 	} else {
@@ -29,15 +30,14 @@ function get_default_action_list() {
 		$row=db_fetch_assoc($result);
 		$actions=unserialize($row['actions']);
 	}
-
 	if (!is_array($actions)) {
 		$actions = array();
 		if ($ismodule==true){
-		set_module_setting("actionsarray", serialize($actions), "staminasystem");
+			set_module_setting("actionsarray", serialize($actions), "staminasystem");
 		}else{
-		$sarray=serialize($actions);
-		$sql="INSERT INTO ".db_prefix("staminaactionsarray")." VALUES ('$sarray')";
-		db_query($sql);
+			$sarray=serialize($actions);
+			$sql="INSERT INTO ".db_prefix("staminaactionsarray")." VALUES ('$sarray')";
+			db_query($sql);
 		}
 	}
 	/*if ($ismodule==true){
@@ -73,11 +73,11 @@ function get_player_action_list($userid=false) {
 			$session['user']['stamina_actions']=serialize($actions);
 		}
 	}
-	/*if ($ismodule==true){
+	if ($ismodule==true){
 		$actions = unserialize(get_module_pref("actions", "staminasystem", $userid));
 	} else {
-		$actions = unserialize(get_userpref("stamina_actions", $userid));
-	}*/
+		//$actions = unserialize(get_userpref("stamina_actions", $userid));
+	}
 	return $actions;
 }
 
@@ -89,14 +89,14 @@ Also sets default values if the player has not yet performed that action.
 Returns False if the action is not installed.
 =======================================================
 */
-
+//TODO: allow it to change the actionsarray of players other than the user.
 function get_player_action($action, $userid=false) {
 	global $session;
 	if ($userid === false) $userid = $session['user']['acctid'];
 	if ($ismodule==true){
-	$playeractions=unserialize(get_module_pref("actions","staminasystem",$userid));
+		$playeractions=unserialize(get_module_pref("actions","staminasystem",$userid));
 	} else {
-	$playeractions=unserialize($session['user']['stamina_actions']);
+		$playeractions=unserialize($session['user']['stamina_actions']);
 	}
 	//Check to see if this action is set for this player, and if not, set it
 	if (!isset($playeractions[$action])){
@@ -108,7 +108,7 @@ function get_player_action($action, $userid=false) {
 			$playeractions[$action]['lvl'] = 0;
 			$playeractions[$action]['naturalcost'] = $defaultactions[$action]['maxcost'];
 			if ($ismodule==true){
-			set_module_pref("actions", serialize($playeractions), "staminasystem", $userid);
+				set_module_pref("actions", serialize($playeractions), "staminasystem", $userid);
 			} else {
 				$session['user']['stamina_actions']=serialize($playeractions);
 			}
@@ -133,6 +133,7 @@ function install_action($actionname, $action){
 	output("`nInstalling %s",$actionname);
 	$defaultactions = get_default_action_list();
 	$defaultactions[$actionname] = $action;
+	debug($defaultactions);
 	if ($ismodule==true){
 		set_module_setting("actionsarray",serialize($defaultactions),"staminasystem");
 	} else {

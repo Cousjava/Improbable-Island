@@ -70,9 +70,7 @@ function elvenhall_sql($version){
 		$return[1]=$result;
 
 		output("Settings for turns emulation has been set, if they weren't already.");*/
-		/*return;
-	} else if ($version=="2.2.2 Elvenhall Edition"){//set default stamina userprefs, if staminasystem wasn't already installed
-		//return;*/
+		
 	} else if ($version=="2.2.0 Elvenhall Edition"){
 		
 		if ($session['dbinfo']['upgrade']==true && is_module_installed("staminasystem"==true)){
@@ -151,13 +149,12 @@ function elvenhall_sql($version){
 				db_query($sql);
 			}
 		}
-
+		
 		//Install stamina actions
 		output("`nInstalling stamina actions...");
 		require_once("lib/stamina/stamina.php");
 		require_once("lib/stamina/defaultactions.php");
 		return true;
-
 	}
 }
 

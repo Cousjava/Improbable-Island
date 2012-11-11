@@ -208,8 +208,6 @@ if (getsetting("allowcreation",1)==0){
 						//creating userprefs
 						//TODO: deal with userpefs stuff
 
-
-
 						$session['user']['stamina_amount']=100000;
 						$session['user']['stamina_amber']=40000;
 						$session['user']['stamina_red']=20000;
